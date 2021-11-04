@@ -8,6 +8,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 var PORT = process.env.PORT || 3000;
 
+app.use(express.limit('6mb'));
+
 let tabPliki = [];
 let aktID = 0;
 
