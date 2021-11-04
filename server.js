@@ -1,8 +1,9 @@
-var express = require("express")
-var path = require("path")
-var formidable = require("formidable")
-var hbs = require("express-handlebars")
-var app = express()
+var express = require("express");
+var path = require("path");
+var formidable = require("formidable");
+var hbs = require("express-handlebars");
+var Fs = require("fs");
+var app = express();
 app.use(express.static('static'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +23,12 @@ app.engine('hbs', hbs({
 app.get('/', (req, res) => {
     res.redirect('/filemanager');
 });
+
+function typPliku(nazwa) {
+    let rozsz = nazwa.split('.');
+    return rozsz[rozsz.length - 1];
+}
+
 
 app.get('/filemanager', (req, res) => {
     res.render('filemanager.hbs', { 'pliki': tabPliki });
@@ -96,11 +103,6 @@ app.get("/delete", function (req, res) {
 app.listen(PORT, () => {
     console.log('Start serwera na porcie ' + PORT);
 });
-
-function typPliku(nazwa) {
-    let rozsz = nazwa.split('.');
-    return rozsz[rozsz.length - 1];
-}
 
 function wstawIkone(plik) {
     let typ = typPliku(plik.name);
