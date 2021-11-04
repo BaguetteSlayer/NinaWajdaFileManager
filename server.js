@@ -2,7 +2,7 @@ var express = require("express");
 var path = require("path");
 var formidable = require("formidable");
 var hbs = require("express-handlebars");
-var Fs = require("fs");
+//var Fs = require("fs");
 var app = express();
 app.use(express.static('static'));
 app.use(express.json());
@@ -27,8 +27,7 @@ app.get('/', (req, res) => {
 function typPliku(nazwa) {
     let rozsz = nazwa.split('.');
     return rozsz[rozsz.length - 1];
-}
-
+} 
 
 app.get('/filemanager', (req, res) => {
     res.render('filemanager.hbs', { 'pliki': tabPliki });
@@ -100,10 +99,6 @@ app.get("/delete", function (req, res) {
     res.redirect("/filemanager");
 })
 
-app.listen(PORT, () => {
-    console.log('Start serwera na porcie ' + PORT);
-});
-
 function wstawIkone(plik) {
     let typ = typPliku(plik.name);
     if (['jpg', 'js', 'html', 'zip', 'png', 'txt', 'pdf'].includes(typ)) {
@@ -112,3 +107,7 @@ function wstawIkone(plik) {
         plik['ikonka'] = `gfx/no.png`;
     }
 }
+
+app.listen(PORT, () => {
+    console.log('Start serwera na porcie ' + PORT);
+});
