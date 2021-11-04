@@ -1,0 +1,21 @@
+<div class="left">
+    <h2>File Manager</h2>
+    <a href="/reset">USUŃ DANE O PLIKACH</a>
+</div>
+<div class="content">
+    <div class="fh">
+        <div>id</div>
+        <div>image</div>
+        <div>name</div>
+        <div>size</div>
+        <div>type</div>
+        <div>-</div>
+        <div>-</div>
+        <div>-</div>
+    </div>
+    <div class="fd">
+        {{#each pliki}}
+        {{> infos}}
+        {{/each}}
+    </div>
+</div>
